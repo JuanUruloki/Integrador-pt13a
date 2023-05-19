@@ -1,11 +1,11 @@
 import styles from "./Nav.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-import { onSearch } from "../../App";
 
-const Nav = () => {
+
+const Nav = (props) => {
   return (
     <div className={styles.nav}>
-      <SearchBar onSearch={onSearch} />;
+      <SearchBar onSearch={props.onSearch} />;
     </div>
   );
 };

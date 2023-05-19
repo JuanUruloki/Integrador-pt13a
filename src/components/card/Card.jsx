@@ -1,6 +1,7 @@
 import styles from "./Card.module.css";
 
 export default function Card({
+  id,
   name,
   status,
   species,
@@ -13,7 +14,12 @@ export default function Card({
     <div className={styles.container}>
       <div className={styles.div}>
         <div className={styles.buttonContainer}>
-          <button className={styles.button} onClick={() => onClose()}>
+          <button
+            className={styles.button}
+            onClick={() => {
+              onClose(id);
+            }}
+          >
             X
           </button>
         </div>
