@@ -1,15 +1,16 @@
-.div {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  border-radius: 10px;
+  border-radius: 1.5em;
   border-color: #128494;
   border-style: solid;
   border-width: 2px;
   width: 18em;
-  height: 2em;
+  height: 3em;
   background-color: #00b7c2;
+  margin-right: 3em;
 }
 
 .input {
@@ -17,7 +18,8 @@
   border-radius: 15px 0px 0px 15px;
   background-color: #ecfeff;
   /* margin: 10px; */
-  /* padding: 5px; */
+  padding: 5px;
+  padding-left: 10px;
 }
 
 .addButton {
@@ -25,5 +27,5 @@
   border-radius: 0px 15px 15px 0px;
   background-color: #ecfeff;
   /* margin: 10px; */
-  /* padding: 5px; */
+  padding: 5px;
 }

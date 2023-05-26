@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  
+}
+
+.submit {
+    
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    width: 177px;
+    border-radius:  0px 0px 10px 10px  ;
+  
+}
