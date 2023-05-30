@@ -13,12 +13,20 @@ const Form = ({ login }) => {
     password: "",
   });
 
+  // const handleChange = (event) => {
+  //   const property = event.target.name;
+  //   const value = event.target.value;
+  //   setUserData({ ...userData, [property]: value });
+  //   validation({ ...userData, [property]: value }, errors, setErrors);
+  //   console.log(errors);
+  // };
+
   const handleChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
     setUserData({ ...userData, [property]: value });
-    validation({ ...userData, [property]: value }, errors, setErrors);
-  };
+    setErrors(validation({...userData, [property]: value}))
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,26 +37,28 @@ const Form = ({ login }) => {
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div>
-          <label>Username</label>
+          {/* <label>Username</label> */}
           <input
             type="text"
-            placeholder="Email..."
+            placeholder="Username..."
             name="email"
             value={userData.email}
+            className={styles.inputs}
             onChange={handleChange}
           />
-          <p>{errors.email}</p>
+          <p>{`${errors.email ? errors.email : 'ingresa con email@gmail.com'}`}</p>
         </div>
         <div>
-          <label>Password</label>
+          {/* <label>Password</label> */}
           <input
             type="text"
             name="password"
             placeholder="Password..."
             value={userData.password}
+            className={styles.inputs} 
             onChange={handleChange}
           />
-          <p>{errors.password}</p>
+          <p>{`${errors.password ? errors.password : 'ingresa con pass123'}`}</p>
         </div>
         <button className={styles.submit}>Submit</button>
       </form>

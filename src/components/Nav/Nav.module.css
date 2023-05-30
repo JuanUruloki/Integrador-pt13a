@@ -6,3 +6,8 @@
   justify-content: end;
   margin-bottom: 1em;
 }
+
+.buttons {
+  background-color: #093a41;
+  color: aliceblue;
+}

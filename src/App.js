@@ -6,11 +6,12 @@ import Cards from "./components/cards/Cards.jsx";
 import Nav from "./components/Nav/Nav";
 import Detail from "./components/Detail/Detail.jsx";
 import About from "./components/About/About.jsx";
+import Favorites from "./components/Favorites/Favorites";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 function App() {
-  const email = "email@gmail.com";
-  const password = "pass123";
+  const EMAIL = "email@gmail.com";
+  const PASSWORD = "pass123";
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
@@ -33,13 +34,17 @@ function App() {
   };
 
   const login = (userData) => {
-    if (userData.email === email && userData.password === password) {
+    if (userData.email === EMAIL && userData.password === PASSWORD) {
       setAccess(true);
       navigate("/home");
     } else {
       alert("Usuario o password incorrecto");
     }
   };
+  const logout = () => {
+    setAccess(false);
+    navigate("/");
+    };
 
   useEffect(() => {
     !access && navigate("/");
@@ -47,13 +52,14 @@ function App() {
 
   return (
     <div className={styles.App}>
-      {pathname !== "/" && <Nav onSearch={onSearch} />}
+      {pathname !== "/" && <Nav onSearch={onSearch} logout={logout}/>}
       <Routes>
-        <Route path="/" element={<Form login={login} />} />
+        <Route path="/" element={<Form login={login} className={styles.form} />} />
         <Route
           path="/home"
           element={<Cards characters={characters} onClose={onClose} />}
         />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
