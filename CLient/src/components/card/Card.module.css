@@ -1,0 +1,57 @@
+.div {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5px;
+  width: 230px;
+  background-color: #4df037be;
+  height: 350px;
+  border-radius: 20px;
+  position: relative;
+  font-size: x-small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-shadow: 12px 13px 46px 5px #128494;
+  padding: 1em;
+}
+
+.container:hover {
+  display: flex;
+  width: 250px;
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button {
+  color: rgb(255, 255, 255);
+  background-color: red;
+  border-radius: 50%;
+  border: 0px;
+  width: 32px;
+  height: 32px;
+  margin-top: 5px;
+}
+/* .button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  box-shadow: 12px 13px 17px -9px #128494;
+} */
+
+.buttonContainer {
+  display: flex;
+  justify-items: center;
+}
+
+.props {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  box-shadow: 12px 13px 46px 5px rgba(0, 0, 0, 0.67);
+}
