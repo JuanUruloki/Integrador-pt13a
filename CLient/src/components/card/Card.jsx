@@ -59,7 +59,7 @@ function Card({
     return (
       <div className={styles.container}>
         {isFav ? (
-          <button onClick={handleFavorite}>❤️</button>
+          <button onClick={handleFavorite} className={styles.favButton}>❤️</button>
         ) : (
           <button onClick={handleFavorite}>🤍</button>
         )}

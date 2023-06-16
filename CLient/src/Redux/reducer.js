@@ -18,6 +18,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         myFavorites: state.myFavorites.filter((fav) => fav.id !== payload),
+        allCharactersFav: state.allCharactersFav.filter((char) => char.id !== payload),
       };
     case FILTER:
       const allCharactersFiltered = state.allCharactersFav.filter(
