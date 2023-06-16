@@ -16,9 +16,10 @@ function App() {
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const URL = "https://rickandmortyapi.com/api/character"
 
   const onSearch = (id) => {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
+    axios(`${URL}/${id}`).then(
       ({ data }) => {
         if (data.name && !characters.find((char) => char.id === data.id)) {
           setCharacters((oldChars) => [...oldChars, data]);
