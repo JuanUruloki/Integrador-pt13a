@@ -1,4 +1,4 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "../Redux/action-types";
+import { FILTER, ORDER } from "../Redux/action-types";
 
 const initialState = {
   myFavorites: [],
@@ -7,19 +7,24 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case ADD_FAV:
+    /*case ADD_FAV:
       return {
         ...state,
         myFavorites: [...state.allCharactersFav, payload],
         allCharactersFav: [...state.allCharactersFav, payload],
-      };
+      }; */
+    case 'ADD_FAV':
+      return { ...state, myFavorites: payload, allCharactersFav: payload };  
 
-    case REMOVE_FAV:
+    /*case REMOVE_FAV:
       return {
         ...state,
         myFavorites: state.myFavorites.filter((fav) => fav.id !== payload),
         allCharactersFav: state.allCharactersFav.filter((char) => char.id !== payload),
-      };
+      }; */
+    case 'REMOVE_FAV':
+      return { ...state, myFavorites: payload };
+
     case FILTER:
       const allCharactersFiltered = state.allCharactersFav.filter(
         (character) => character.gender === payload

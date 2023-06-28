@@ -10,42 +10,63 @@ import Favorites from "./components/Favorites/Favorites";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 function App() {
-  const EMAIL = "email@gmail.com";
-  const PASSWORD = "pass123";
+  // const EMAIL = "email@gmail.com";
+  // const PASSWORD = "pass123";
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const URL = "https://rickandmortyapi.com/api/character"
+  const URL = "https://rickandmortyapi.com/api/character";
 
-  const onSearch = (id) => {
-    axios(`${URL}/${id}`).then(
-      ({ data }) => {
-        if (data.name && !characters.find((char) => char.id === data.id)) {
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert("¡No hay personajes con este ID!");
-        }
+  const onSearch = async (id) => {
+    try {
+      const response = await axios(`${URL}/${id}`);
+      const { data } = response;
+      if (data.name && !characters.find((char) => char.id === data.id)) {
+        setCharacters((oldChars) => [...oldChars, data]);
+      } else {
+        window.alert(`Ya llamaste a ${data.name}`);
       }
-    );
+    } catch (error) {
+      window.alert("¡No hay personajes con este ID!");
+    }
   };
 
   const onClose = (id) => {
     setCharacters(characters.filter((char) => char.id !== id));
   };
 
-  const login = (userData) => {
+  /*const login = (userData) => {
     if (userData.email === EMAIL && userData.password === PASSWORD) {
       setAccess(true);
       navigate("/home");
     } else {
       alert("Usuario o password incorrecto");
     }
+  }; */
+
+  const login = async (userData) => {
+    try {
+      const { email, password } = userData;
+      const URL = "http://localhost:3001/rickandmorty/login/";
+      const response = await axios(
+        `${URL}?email=${email}&password=${password}`
+      );
+      const { data } = response;
+      const { access } = data;
+      setAccess(data);
+      access
+        ? navigate("/home")
+        : window.alert(`Acceso invalido para usuario ${userData.email}`);
+    } catch (error) {
+      window.alert(error.message);
+    }
   };
+
   const logout = () => {
     setAccess(false);
     navigate("/");
-    };
+  };
 
   useEffect(() => {
     !access && navigate("/");
@@ -53,9 +74,12 @@ function App() {
 
   return (
     <div className={styles.App}>
-      {pathname !== "/" && <Nav onSearch={onSearch} logout={logout}/>}
+      {pathname !== "/" && <Nav onSearch={onSearch} logout={logout} />}
       <Routes>
-        <Route path="/" element={<Form login={login} className={styles.form} />} />
+        <Route
+          path="/"
+          element={<Form login={login} className={styles.form} />}
+        />
         <Route
           path="/home"
           element={<Cards characters={characters} onClose={onClose} />}
